@@ -29,10 +29,14 @@
 
     More information about shared dependencies can be found at https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
   -->
+  <!-- 在容器中把需要的各个模块引入进来 -->
   <script type="systemjs-importmap">
     {
       "imports": {
-        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js"
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+        "react": "https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js",
+        "react-router-dom": "https://cdn.jsdelivr.net/npm/react-router-dom@5.2.0/umd/react-router-dom.min.js"
       }
     }
   </script>
@@ -41,11 +45,13 @@
   <!-- Add your organization's prod import map URL to this script's src  -->
   <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
 
+  <!-- 告诉基座去哪里加载应用 -->
   <% if (isLocal) { %>
   <script type="systemjs-importmap">
     {
       "imports": {
-        "@ncwu/root-config": "//localhost:9000/ncwu-root-config.js"
+        "@ncwu/root-config": "//localhost:9000/ncwu-root-config.js",
+        "@ncwu/micro-app-react": "//localhost:8080/ncwu-micro-app-react.js"
       }
     }
   </script>
@@ -70,6 +76,7 @@
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
+  <!-- 容器元素 -->
   <main></main>
   <script>
     System.import('@ncwu/root-config');

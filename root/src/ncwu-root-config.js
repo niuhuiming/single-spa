@@ -6,13 +6,26 @@ import { registerApplication, start } from "single-spa";
  * 2.app: 函数类型，返回 Promise, 通过 Systemjs 引用打包好的微前端引用模块代码
  * 3.activeWhen: 路由匹配时激活应用
  */
+// registerApplication({
+//   name: "@single-spa/welcome",
+//   app: () =>
+//     System.import(
+//       "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js"
+//     ),
+//   activeWhen: ["/"],
+// });
+
+// 精准匹配
+registerApplication(
+  "@single-spa/welcome",
+  () => System.import("https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js"),
+  location => location.pathname === '/'
+);
+
 registerApplication({
-  name: "@single-spa/welcome",
-  app: () =>
-    System.import(
-      "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js"
-    ),
-  activeWhen: ["/"],
+  name: "@ncwu/micro-app-react",
+  app: () => System.import("@ncwu/micro-app-react"),
+  activeWhen: ["/react"]
 });
 
 // registerApplication({

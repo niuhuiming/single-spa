@@ -1,11 +1,7 @@
-import React from 'react';
-import User from './User';
+import React from 'react'
 
 export default function App() {
   return (
-    <div>
-      <h3>webpack 5</h3>
-      <User />
-    </div>
+    <div>微应用的App</div>
   )
 }

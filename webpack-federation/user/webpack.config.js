@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ModuleFederationPlugin = require('webpack').container.ModuleFederationPlugin;
 
 module.exports = {
   // entry入口，output出口，module模块，plugins插件，mode工作模式，devServer开发服务器
@@ -31,11 +32,18 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
+    }),
+    new ModuleFederationPlugin({
+      // 对外提供打包后的文件名，导入时会使用
+      filename: 'myUser.js',
+      // 微应用的名字，类似single-spa组织名
+      name: 'ncwu',
+      // 具体要导出谁
+      exposes: {
+        // 格式：名字: 具体哪一个组件
+        './about': './src/About.js',
+        './home': './src/Home.js'
+      }
     })
-  ],
-  devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-    port: 3001,
-    open: true
-  }
+  ]
 }

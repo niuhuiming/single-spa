@@ -9,7 +9,7 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 // 通过 vue-router 简单展示两个组件
-const About = { template: "<div>About</div>" }
+import About from './components/About';
 const Home = { template: "<div>Home</div>" }
 const routes = [
   { path: '/about', component: About },

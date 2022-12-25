@@ -28,6 +28,12 @@ registerApplication({
   activeWhen: ["/react"]
 });
 
+registerApplication({
+  name: "@ncwu/micro-app-vue2",
+  app: () => System.import("@ncwu/micro-app-vue2"),
+  activeWhen: ["/vue2"]
+});
+
 // registerApplication({
 //   name: "@ncwu/navbar",
 //   app: () => System.import("@ncwu/navbar"),
